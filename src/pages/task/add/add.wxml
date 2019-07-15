@@ -23,7 +23,7 @@
         <view class="weui-cell weui-cell_switch">
             <view class="weui-cell__bd">全天事件</view>
             <view class="weui-cell__ft">
-                <switch checked="{{isIgnoreTime}}" />
+                <switch checked="{{isIgnoreTime}}" bindchange="bindIsIgnoreTimeChange" />
             </view>
         </view>
         <view class="weui-cell weui-cell_input">
@@ -51,6 +51,6 @@
         </view>
     </view>
     <view class="weui-btn-area">
-        <button class="weui-btn" form-type="submit" type="primary" bindtap="submit">确定</button>
+        <button class="weui-btn" form-type="submit" type="primary" disabled="{{!formFull}}" bindtap="submit">确定</button>
     </view>
 </view>

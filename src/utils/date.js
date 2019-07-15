@@ -73,4 +73,9 @@ exports.time2minute = time2minute;
 function minute2time (minutes, formatStr) {
     const MINUTES_IN_A_HOUR = 60;
     const hours = Math.floor(minutes / MINUTES_IN_A_HOUR);
+    const minute = minutes % MINUTES_IN_A_HOUR;
+    let result = formatStr || '';
+    return result.replace('hh', hours)
+        .replace('mm', minute);
 }
+exports.minute2time = minute2time;
