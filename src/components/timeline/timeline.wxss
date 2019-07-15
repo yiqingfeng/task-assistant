@@ -1,0 +1,17 @@
+/* components/timershaft/timershaft.wxss */
+.m-timeline {
+  padding: 0 40rpx;
+}
+.m-timeline-list {
+  position: relative;
+}
+.m-timeline-list::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 20rpx;
+  left: 120rpx;
+  bottom: 20rpx;
+  width: 0;
+  border-left: 1px dashed #ddd; 
+}

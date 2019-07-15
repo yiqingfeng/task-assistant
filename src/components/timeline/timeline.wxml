@@ -1,0 +1,6 @@
+<!--components/timershaft/timershaft.wxml-->
+<view class="m-timeline">
+  <view class="m-timeline-list">
+    <slot></slot>
+  </view>
+</view>

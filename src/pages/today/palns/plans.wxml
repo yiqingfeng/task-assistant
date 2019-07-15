@@ -1,0 +1,28 @@
+<!--pages/today/palns/plans.wxml-->
+<view class="g-page">
+  <view class="g-header">
+    <view class="head-overlay">
+      <view class="head-day">8</view>
+      <view class="head-right">
+        <view class="head-name">Monday</view>
+        <view class="head-month">February 2015</view>
+      </view>
+    </view>
+    <icon class="btn-add--task iconfont icon-add"></icon>
+  </view>
+  <timeline>
+    <timeline-cell
+      wx:for="{{list}}"
+      wx:for-index="cIndex"
+      wx:for-item="cItem"
+      wx:key="{{cIndex}}"
+      times="{{cItem.times}}"
+      status="{{cItem.status}}">
+      <view
+        wx:for="{{cItem.tasks}}"
+        wx:for-index="tIndex"
+        wx:for-item="tItem"
+        wx:key="{{tIndex}}">{{tItem.title}}</view>
+    </timeline-cell>
+  </timeline>
+</view>

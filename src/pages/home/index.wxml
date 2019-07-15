@@ -1,0 +1,17 @@
+<view class="page">
+    <view class="page__hd">
+        <view class="head-overlay">
+            <view class="head-day">{{days}}</view>
+            <view class="head-right">
+                <view class="head-name">{{weeks}}</view>
+                <view class="head-month">{{months}} {{years}}</view>
+            </view>
+        </view>
+        <icon class="btn-add--task iconfont icon-add" bindtap="goToAddTask"></icon>
+    </view>
+    <timeline class="page__bd">
+        <timeline-cell wx:for="{{list}}" wx:for-index="cIndex" wx:for-item="cItem" wx:key="{{cIndex}}" times="{{cItem.times}}" status="{{cItem.status}}">
+            <view wx:for="{{cItem.tasks}}" wx:for-index="tIndex" wx:for-item="tItem" wx:key="{{tIndex}}">{{tItem.title}}</view>
+        </timeline-cell>
+    </timeline>
+</view>

@@ -1,0 +1,13 @@
+<!--components/timeline-cell/timeline-cell.wxml-->
+<view class="m-timeline-item">
+  <view class="m-timeline-item--inner">
+    <view class="m-timeline-item_line {{lineClass}}">
+      <view class="m-timeline-item_time" wx:for="{{times}}" wx:key="{{index}}" style="top: {{item.top}};">
+        <text class="m-timeline-item_time--text">{{item.text}}</text>
+      </view>
+    </view>
+    <view class="m-timeline-item_content">
+      <slot></slot>
+    </view>
+  </view>
+</view>

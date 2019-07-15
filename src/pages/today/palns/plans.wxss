@@ -1,0 +1,42 @@
+/* pages/today/palns/plans.wxss */
+.g-header {
+  position: relative;
+  background: url("https://picsum.photos/1080/720?image=1044") no-repeat;
+  background-size: cover;
+  color: #fff;
+}
+.head-overlay {
+  display: flex;
+  align-items: center;
+  padding: 96rpx 64rpx;
+  line-height: 1.15;
+  background-color: rgba(123, 94, 155, 0.5);
+}
+.head-day {
+  font-size: 128rpx;
+}
+.head-right {
+  flex: 1;
+  margin-left: 30rpx;
+}
+.head-name {
+  font-size: 51.2rpx;
+}
+.head-month {
+  margin-top: 4px;
+  font-weight: 300;
+  font-size: 24rpx;
+  letter-spacing: 4rpx;
+  text-transform: uppercase;
+}
+.btn-add--task {
+  position: absolute;
+  width: 100rpx;
+  height: 100rpx;
+  right: 40rpx;
+  bottom: -50rpx;
+  border-radius: 50%;
+  font-size: 48rpx;
+  background-color: #F93B69;
+  box-shadow: 0 0 16rpx #202020
+}

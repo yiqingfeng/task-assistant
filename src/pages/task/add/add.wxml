@@ -1,0 +1,56 @@
+<view class="page">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
+    <view class="weui-cells__title">任务信息</view>
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">标题</view>
+            </view>
+            <view class="weui-cell__bd">
+                <input class="weui-input" name="input" placeholder="请输入" value="{{title}}" />
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">处理日期</view>
+            </view>
+            <view class="weui-cell__bd">
+                <picker mode="date" value="{{date}}" start="{{date}}" bindchange="bindDateChange">
+                    <view class="weui-input">{{date}}</view>
+                </picker>
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_switch">
+            <view class="weui-cell__bd">全天事件</view>
+            <view class="weui-cell__ft">
+                <switch checked="{{isIgnoreTime}}" />
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">开始时间</view>
+            </view>
+            <view class="weui-cell__bd">
+                <picker mode="time" value="{{startTime}}" start="00:00" end="24:00" bindchange="bindStartTimeChange">
+                    <view class="weui-input">{{startTime}}</view>
+                </picker>
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input {{showTimeError ? 'weui-cell_warn' : ''}}">
+            <view class="weui-cell__hd">
+                <view class="weui-label">结束时间</view>
+            </view>
+            <view class="weui-cell__bd">
+                <picker mode="time" value="{{endTime}}" start="00:00" end="24:00" bindchange="bindEndTimeChange">
+                    <view class="weui-input">{{endTime}}</view>
+                </picker>
+            </view>
+            <view class="weui-cell__ft" hidden="{{!showTimeError}}">
+                <icon type="warn" size="23" color="#E64340"></icon>
+            </view>
+        </view>
+    </view>
+    <view class="weui-btn-area">
+        <button class="weui-btn" form-type="submit" type="primary" bindtap="submit">确定</button>
+    </view>
+</view>

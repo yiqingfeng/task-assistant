@@ -1,0 +1,17 @@
+/* pages/task/add/add.wxss */
+page {
+  background: #eee;
+}
+/* .p-add .weui-cells {
+  margin-top: 0.4rem;
+  background-color: #fff;
+}
+.p-add .weui-cells::before,
+.p-add .weui-cells::after {
+  display: none;
+}
+.p-add .weui-cell {
+  height: 100rpx;
+  padding: 0 24rpx;
+  font-size: 28rpx;
+} */

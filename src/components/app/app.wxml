@@ -1,0 +1,3 @@
+<!--components/app.wxml-->
+<text>components/app.wxml</text>
+<c-tabbar></c-tabbar>

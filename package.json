@@ -1,0 +1,21 @@
+{
+  "name": "task-assistant",
+  "version": "1.0.0",
+  "description": "事务小助手",
+  "main": "gulpfile.js",
+  "scripts": {
+    "start": "gulp"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^6.5.1",
+    "cssnano": "^4.1.10",
+    "gulp": "^3.9.1",
+    "gulp-header": "^1.8.8",
+    "gulp-less": "^3.1.0",
+    "gulp-postcss": "^6.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-rimraf": "^0.2.2"
+  }
+}

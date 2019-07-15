@@ -1,0 +1,47 @@
+/* components/timeline-cell/timeline-cell.wxss */
+.m-timeline-item {
+  margin-top: 40rpx;
+  padding: 20rpx 0;
+}
+.m-timeline-item--inner {
+  position: relative;
+  padding-left: 160rpx;
+}
+.m-timeline-item_line {
+  position: absolute;
+  top: 0;
+  left: 120rpx;
+  width: 0;
+  height: 100%;
+  border-left: 1px solid #ddd;
+}
+.m-timeline-item_line--underway {
+  border-left-color: #ff6d6d;
+}
+.m-timeline-item_line--underway .m-timeline-item_time {
+  background-color: #ff6d6d;
+}
+.m-timeline-item_line--past {
+  border-left-color: #07C160;
+}
+.m-timeline-item_line--past .m-timeline-item_time {
+  background-color: #07C160;
+}
+.m-timeline-item_time {
+  position: absolute;
+  width: 20rpx;
+  height: 20rpx;
+  background-color: #ddd;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.m-timeline-item_time--text {
+  position: absolute;
+  top: -12rpx;
+  right: 30rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+}
+.m-timeline-item_content {
+  
+}
