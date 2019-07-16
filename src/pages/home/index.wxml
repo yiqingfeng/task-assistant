@@ -11,7 +11,17 @@
     </view>
     <timeline class="page__bd">
         <timeline-cell wx:for="{{list}}" wx:for-index="cIndex" wx:for-item="cItem" wx:key="{{cIndex}}" times="{{cItem.times}}" status="{{cItem.status}}">
-            <view wx:for="{{cItem.tasks}}" wx:for-index="tIndex" wx:for-item="tItem" wx:key="{{tIndex}}">{{tItem.title}}</view>
+            <view class="weui-cells task-list">
+                <view class="weui-cell" wx:for="{{cItem.tasks}}" wx:for-index="tIndex" wx:for-item="tItem" wx:key="{{tIndex}}">
+                    <view class="weui-cell__hd">
+                        <icon class="iconfont icon-task task-icon" wx:if="{{tItem.status === 1}}"></icon>
+                        <icon class="iconfont icon-selected task-icon" wx:if="{{tItem.status === 2}}"></icon>
+                        <icon class="iconfont icon-nullify task-icon" wx:if="{{tItem.status === 3}}"></icon>
+                        <!-- <image src="{{icon}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image> -->
+                    </view>
+                    <view class="weui-cell__bd ellipsis">{{tItem.title}}</view>
+                </view>
+            </view>
         </timeline-cell>
     </timeline>
 </view>

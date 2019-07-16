@@ -1,5 +1,11 @@
 // 获取应用实例
 const dateUtil = require('../../utils/date.js');
+const {
+    getTasks,
+    parseTasks,
+} = require('../../utils/storage');
+const _ = require('../../libs/lodash');
+console.log(_.sortBy([{a: 1}, {a: 2}], (a, b) => a.a - a.b));
 const app = getApp();
 
 Page({
@@ -22,7 +28,7 @@ Page({
             }, ],
             tasks: [{
                 title: '有时，在一些数据字段被 setData 设',
-                status: 2,
+                status: 1,
             }, {
                 title: '有时，在一些数据字段被 setData 设',
                 status: 2,
@@ -41,7 +47,26 @@ Page({
             }, ],
             tasks: [{
                 title: '有时，在一些数据字段被 setData 设',
+                status: 3,
+            }, {
+                title: '有时，在一些数据字段被 setData 设',
                 status: 2,
+            }, ]
+        }, {
+            status: 'past',
+            times: [{
+                top: '0',
+                text: '10:00',
+            }, {
+                top: '50%',
+                text: '11:00',
+            }, {
+                top: '100%',
+                text: '12:00',
+            }, ],
+            tasks: [{
+                title: '有时，在一些数据字段被 setData 设',
+                status: 3,
             }, {
                 title: '有时，在一些数据字段被 setData 设',
                 status: 2,
@@ -64,7 +89,6 @@ Page({
             months: dateUtil.getMonthDesc(months),
             years,
         });
-        console.log(new Date('2019-4-2'))
     },
     /**
      * 事件处理
@@ -87,7 +111,15 @@ Page({
         }
     },
     getTasksByDate(date) {
-        const tasks = wx.getStorageSync('tasks') || {};
-        return tasks[date] || [];
+        return new Promise((resolve, reject) => {
+            getTasks()
+                .then(data => {
+                    parseTasks(data[date] || [])
+                        .then(list => {
+                            resolve(list);
+                        });
+                });
+        });
     },
+
 })

@@ -54,6 +54,16 @@ function formatDate(date, formatStr) {
 exports.formatDate = formatDate;
 
 /**
+ * 多少小时后
+ */
+function afterHours(date, hours) {
+    const nDate = new Date(date.getTime());
+    nDate.setHours(nDate.getHours() + (hours || 1));
+    return nDate;
+}
+exports.afterHours = afterHours;
+
+/**
  * 时刻转换成分
  */
 function time2minute (str) {

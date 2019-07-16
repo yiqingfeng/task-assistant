@@ -1,5 +1,8 @@
-Page({
+const {
+    clearTasks,
+} = require('../../utils/storage');
 
+Page({
     /**
      * 页面的初始数据
      */
@@ -68,6 +71,20 @@ Page({
      * ----------------------------------------------------------------
      */
     clear() {
-
+        clearTasks()
+            .then(() => {
+                wx.showToast({
+                    title: '清理成功',
+                    duration: 1000,
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+                wx.showToast({
+                    icon: 'none',
+                    title: '清理失败',
+                    duration: 1000,
+                });
+            })
     },
 })

@@ -7,7 +7,7 @@
                 <view class="weui-label">标题</view>
             </view>
             <view class="weui-cell__bd">
-                <input class="weui-input" name="input" placeholder="请输入" value="{{title}}" />
+                <input class="weui-input" name="input" placeholder="请输入" value="{{title}}" bindblur="bindTitleChange" />
             </view>
         </view>
         <view class="weui-cell weui-cell_input">
@@ -46,7 +46,7 @@
                 </picker>
             </view>
             <view class="weui-cell__ft" hidden="{{!showTimeError}}">
-                <icon type="warn" size="23" color="#E64340"></icon>
+                <icon type="warn" size="23" color="#E64340" bindtap="bindShowTimeError"></icon>
             </view>
         </view>
     </view>
