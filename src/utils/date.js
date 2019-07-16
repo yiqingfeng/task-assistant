@@ -1,6 +1,7 @@
 /**
  * 时间相关处理
  */
+const MINUTES_IN_A_HOUR = 60;
 
 /**
  * 获取给定的日期信息
@@ -66,10 +67,10 @@ exports.afterHours = afterHours;
 /**
  * 时刻转换成分
  */
-function time2minute (str) {
+
+function time2minute(str) {
     const exp = /^(\d{1,2})\D{1,2}(\d{1,2})$/;
     const matchs = str.match(exp);
-    const MINUTES_IN_A_HOUR = 60;
     if (matchs) {
         return matchs[1] * MINUTES_IN_A_HOUR + +matchs[2];
     }
@@ -80,8 +81,7 @@ exports.time2minute = time2minute;
 /**
  * 分装换成时刻
  */
-function minute2time (minutes, formatStr) {
-    const MINUTES_IN_A_HOUR = 60;
+function minute2time(minutes, formatStr) {
     const hours = Math.floor(minutes / MINUTES_IN_A_HOUR);
     const minute = minutes % MINUTES_IN_A_HOUR;
     let result = formatStr || '';
@@ -89,3 +89,15 @@ function minute2time (minutes, formatStr) {
         .replace('mm', minute);
 }
 exports.minute2time = minute2time;
+
+/**
+ * 获取给定时间的分钟（当前天）
+ */
+function getDateMinutes(date) {
+    const {
+        hours,
+        minutes,
+    } = getDateInfo(date);
+    return hours * MINUTES_IN_A_HOUR + minutes;
+}
+exports.getDateMinutes = getDateMinutes;

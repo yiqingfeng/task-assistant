@@ -1,11 +1,16 @@
 // 获取应用实例
-const dateUtil = require('../../utils/date.js');
 const {
-    getTasks,
-    parseTasks,
+    getDateInfo,
+    getWeekDesc,
+    getMonthDesc,
+} = require('../../utils/date.js');
+const {
+    getAllTasks,
 } = require('../../utils/storage');
-const _ = require('../../libs/lodash');
-console.log(_.sortBy([{a: 1}, {a: 2}], (a, b) => a.a - a.b));
+const {
+    parseTasks,
+} = require('../../utils/format');
+
 const app = getApp();
 
 Page({
@@ -14,81 +19,34 @@ Page({
         weeks: '',
         months: '',
         years: '',
-        list: [{
-            status: 'underway',
-            times: [{
-                top: '0',
-                text: '10:00',
-            }, {
-                top: '50%',
-                text: '11:00',
-            }, {
-                top: '100%',
-                text: '12:00',
-            }, ],
-            tasks: [{
-                title: '有时，在一些数据字段被 setData 设',
-                status: 1,
-            }, {
-                title: '有时，在一些数据字段被 setData 设',
-                status: 2,
-            }, ]
-        }, {
-            status: 'past',
-            times: [{
-                top: '0',
-                text: '10:00',
-            }, {
-                top: '50%',
-                text: '11:00',
-            }, {
-                top: '100%',
-                text: '12:00',
-            }, ],
-            tasks: [{
-                title: '有时，在一些数据字段被 setData 设',
-                status: 3,
-            }, {
-                title: '有时，在一些数据字段被 setData 设',
-                status: 2,
-            }, ]
-        }, {
-            status: 'past',
-            times: [{
-                top: '0',
-                text: '10:00',
-            }, {
-                top: '50%',
-                text: '11:00',
-            }, {
-                top: '100%',
-                text: '12:00',
-            }, ],
-            tasks: [{
-                title: '有时，在一些数据字段被 setData 设',
-                status: 3,
-            }, {
-                title: '有时，在一些数据字段被 setData 设',
-                status: 2,
-            }, ]
-        }]
+        ignoreTimeTasks: [],
+        timeLineTasks: [],
     },
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function(options) {
+    onLoad(options) {
+
+    },
+    onShow() {
         const {
             days,
             weeks,
             months,
             years,
-        } = this.getCurtDateInfo();
-        this.setData({
-            days,
-            weeks: dateUtil.getWeekDesc(weeks),
-            months: dateUtil.getMonthDesc(months),
-            years,
-        });
+        } = getDateInfo();
+        this.getTasksByDate(`${years}-${months}-${days}`)
+            .then(({ignoreTimeTasks, timeLineTasks}) => {
+                console.log(timeLineTasks);
+                this.setData({
+                    days,
+                    weeks: getWeekDesc(weeks),
+                    months: getMonthDesc(months),
+                    years,
+                    ignoreTimeTasks,
+                    timeLineTasks,
+                });
+            })
     },
     /**
      * 事件处理
@@ -101,23 +59,11 @@ Page({
     /**
      * 操作处理
      */
-    getCurtDateInfo() {
-        const now = new Date();
-        return {
-            days: now.getDate(),
-            weeks: now.getDay(),
-            months: now.getMonth() + 1,
-            years: now.getFullYear(),
-        }
-    },
     getTasksByDate(date) {
         return new Promise((resolve, reject) => {
-            getTasks()
+            getAllTasks()
                 .then(data => {
-                    parseTasks(data[date] || [])
-                        .then(list => {
-                            resolve(list);
-                        });
+                    resolve(parseTasks(data[date] || []));
                 });
         });
     },

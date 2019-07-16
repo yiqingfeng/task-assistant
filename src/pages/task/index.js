@@ -1,5 +1,9 @@
+/**
+ * @desc 任务管理
+ */
+
 const {
-    clearTasks,
+    clearStorage,
 } = require('../../utils/storage');
 
 Page({
@@ -71,7 +75,7 @@ Page({
      * ----------------------------------------------------------------
      */
     clear() {
-        clearTasks()
+        clearStorage('tasks')
             .then(() => {
                 wx.showToast({
                     title: '清理成功',
@@ -87,4 +91,21 @@ Page({
                 });
             })
     },
+    clearAll() {
+        clearStorage('all')
+            .then(() => {
+                wx.showToast({
+                    title: '清理成功',
+                    duration: 1000,
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+                wx.showToast({
+                    icon: 'none',
+                    title: '清理失败',
+                    duration: 1000,
+                });
+            })
+    }
 })

@@ -2,9 +2,13 @@
  * wx storage 相关处理
  */
 const _ = require('../libs/lodash');
+
 const TASKS_KEY = 'tasks';
 
-function getTasks() {
+/**
+ * 获取所有任务信息
+ */
+function getAllTasks() {
     return new Promise((resolve, reject) => {
         wx.getStorage({
             key: TASKS_KEY,
@@ -18,14 +22,17 @@ function getTasks() {
         });
     });
 }
-exports.getTasks = getTasks;
+exports.getAllTasks = getAllTasks;
 
+/**
+ * 添加任务到任务列表
+ */
 function addTask(task) {
     const {
         date,
     } = task;
     return new Promise((resolve, reject) => {
-        getTasks()
+        getAllTasks()
             .then(tasks => {
                 if (!tasks[date]) {
                     tasks[date] = [];
@@ -46,11 +53,38 @@ function addTask(task) {
 }
 exports.addTask = addTask;
 
-function clearTasks() {
+/**
+ * 清理存储信息
+ */
+function clearStorage(type) {
+    const keyMaps = {
+        'tasks': TASKS_KEY,
+    };
+    // 清空所有 key
+    if (type === 'all') {
+        return new Promise((resolve, reject) => {
+            wx.clearStorage({
+                success() {
+                    resolve();
+                },
+                fail(error) {
+                    reject(error);
+                }
+            })
+        });
+    }
+
+    if (!keyMaps[type]) {
+        return new Promise((resolve, reject) => {
+            reject({
+                errMsg: '该清空不合法！',
+            });
+        });
+    }
+    // 清空指定key
     return new Promise((resolve, reject) => {
-        wx.setStorage({
-            key: TASKS_KEY,
-            data: {},
+        wx.removeStorage({
+            key: keyMaps[type],
             success() {
                 resolve();
             },
@@ -60,24 +94,4 @@ function clearTasks() {
         })
     });
 }
-exports.clearTasks = clearTasks;
-
-function parseTasks(tasks) {
-    const ignoreTimeTasks = [];
-    const timeLineTasks = [];
-    let timeIndex = new Set();
-    let startTimeList = {};
-    let endTimeList = {};
-    // 获取无限时任务
-    tasks.forEach((task, index) => {
-        if (task.isIgnoreTime) {
-            ignoreTimeTasks.push(task);
-        } else {
-            startTimeList.push()
-            tempList.push(task);
-        }
-    });
-    // 解析限时任务
-
-}
-exports.parseTasks = parseTasks;
+exports.clearStorage = clearStorage;

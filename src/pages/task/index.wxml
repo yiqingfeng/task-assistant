@@ -1,3 +1,4 @@
 <view class="page">
     <button class="weui-btn" type="primary" bindtap="clear">清空</button>
+    <button class="weui-btn" type="primary" bindtap="clearAll">清空所有存储</button>
 </view>

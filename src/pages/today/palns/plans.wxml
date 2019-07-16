@@ -1,3 +1,0 @@
-<view class="page">
-    <button class="weui-btn" type="primary" bindtap="clear">清空</button>
-</view>

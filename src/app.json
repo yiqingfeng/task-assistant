@@ -3,8 +3,7 @@
         "pages/home/index",
         "pages/task/index",
         "pages/task/add/add",
-        "pages/logs/logs",
-        "pages/today/palns/plans"
+        "pages/goal/index"
     ],
     "window": {
         "backgroundColor": "#eee",
@@ -23,7 +22,7 @@
             "iconPath": "images/home.png",
             "selectedIconPath": "images/home-active.png"
         }, {
-            "pagePath": "pages/logs/logs",
+            "pagePath": "pages/goal/index",
             "text": "目标",
             "iconPath": "images/goal.png",
             "selectedIconPath": "images/goal-active.png"
