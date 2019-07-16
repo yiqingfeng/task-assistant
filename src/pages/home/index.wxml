@@ -9,28 +9,35 @@
         </view>
         <icon class="btn-add--task iconfont icon-add" bindtap="goToAddTask"></icon>
     </view>
-    <timeline class="page__bd">
-        <view class="weui-cells" wx:if="{{ignoreTimeTasks && ignoreTimeTasks.length}}">
-            <view class="weui-cell" wx:for="{{ignoreTimeTasks}}" wx:key="{{index}}">
-                <view class="weui-cell__hd">
-                    <icon class="iconfont icon-task task-icon" wx:if="{{item.status === 1}}"></icon>
-                    <icon class="iconfont icon-selected task-icon" wx:if="{{item.status === 2}}"></icon>
-                    <icon class="iconfont icon-nullify task-icon" wx:if="{{item.status === 3}}"></icon>
+    <view class="page__bd">
+        <view class="tasks-ignore" wx:if="{{ignoreTimeTasks && ignoreTimeTasks.length}}">
+            <view class="weui-cells__title">全天任务</view>
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell" wx:for="{{ignoreTimeTasks}}" wx:key="{{index}}">
+                    <view class="weui-cell__hd">
+                        <icon class="iconfont icon-task task-icon" wx:if="{{item.status === 1}}"></icon>
+                        <icon class="iconfont icon-selected task-icon" wx:if="{{item.status === 2}}"></icon>
+                        <icon class="iconfont icon-nullify task-icon" wx:if="{{item.status === 3}}"></icon>
+                    </view>
+                    <view class="weui-cell__bd ellipsis">{{item.title}}</view>
                 </view>
-                <view class="weui-cell__bd ellipsis">{{item.title}}</view>
             </view>
         </view>
-        <timeline-cell wx:for="{{timeLineTasks}}" wx:for-index="cIndex" wx:for-item="cItem" wx:key="{{cIndex}}" times="{{cItem.times}}" status="{{cItem.status}}">
-            <view class="weui-cells task-list">
-                <view class="weui-cell" wx:for="{{cItem.tasks}}" wx:for-index="tIndex" wx:for-item="tItem" wx:key="{{tIndex}}">
-                    <view class="weui-cell__hd">
-                        <icon class="iconfont icon-task task-icon" wx:if="{{tItem.status === 1}}"></icon>
-                        <icon class="iconfont icon-selected task-icon" wx:if="{{tItem.status === 2}}"></icon>
-                        <icon class="iconfont icon-nullify task-icon" wx:if="{{tItem.status === 3}}"></icon>
+        <view class="tasks-timeline">
+            <timeline>
+                <timeline-cell wx:for="{{timeLineTasks}}" wx:for-index="cIndex" wx:for-item="cItem" wx:key="{{cIndex}}" times="{{cItem.times}}" status="{{cItem.status}}">
+                    <view class="weui-cells task-list">
+                        <view class="weui-cell" wx:for="{{cItem.tasks}}" wx:for-index="tIndex" wx:for-item="tItem" wx:key="{{tIndex}}">
+                            <view class="weui-cell__hd">
+                                <icon class="iconfont icon-task task-icon" wx:if="{{tItem.status === 1}}"></icon>
+                                <icon class="iconfont icon-selected task-icon" wx:if="{{tItem.status === 2}}"></icon>
+                                <icon class="iconfont icon-nullify task-icon" wx:if="{{tItem.status === 3}}"></icon>
+                            </view>
+                            <view class="weui-cell__bd ellipsis">{{tItem.title}}</view>
+                        </view>
                     </view>
-                    <view class="weui-cell__bd ellipsis">{{tItem.title}}</view>
-                </view>
-            </view>
-        </timeline-cell>
-    </timeline>
+                </timeline-cell>
+            </timeline>
+        </view>
+    </view>
 </view>
